@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.en.*;
+import io.cucumber.java.hu.Ha;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,27 +22,6 @@ public class LoginSteps {
 
     @Given("the user is on the login page")
     public void the_user_is_on_the_login_page(){
-//        System.setProperty("webdriver.chrome.verboseLogging", "true");
-        //System.setProperty("webdriver.chrome.driver", "/usr/bin/chromedriver");
-        //ChromeOptions options = new ChromeOptions();
-        //options.setBinary("/usr/bin/chromium-browser");
-
-
-// Before initializing WebDriver in your step definitions
-//        ChromeOptions options = new ChromeOptions();
-//        //options.addArguments("--no-sandbox"); // Bypass OS security model
-//        options.addArguments("--disable-dev-shm-usage"); // Use /tmp instead of /dev/shm
-//        //options.addArguments("--headless"); // Run in headless mode if no GUI is available
-//        options.addArguments("--disable-gpu"); // Disable GPU rendering
-//        options.addArguments("--remote-allow-origins=*"); // Handle potential CORS issues
-//        options.addArguments("--disable-extensions"); // Disable extensions for stability
-//        options.addArguments("--disable-software-rasterizer"); // Disable software rendering
-//        options.addArguments("--disable-setuid-sandbox"); // Disable setuid sandboxing
-
-// Pass the options to the WebDriver
-//        driver = new ChromeDriver(options);
-
-        //driver = new ChromeDriver();
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get(URL);
@@ -54,6 +34,11 @@ public class LoginSteps {
     public void the_user_enters_email_and_password(String email, String password){
         loginPage.fillEmailField(email);
         loginPage.fillPasswordField(password);
+    }
+
+    @When("the user clicks the login button")
+    public void the_user_clicks_the_login_button(){
+        loginPage.clickLoginButton();
     }
 
     @Then("the user is redirected to the dashboard page")

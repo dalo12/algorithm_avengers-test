@@ -20,4 +20,9 @@ public class LoginPage {
         By emailField = By.id("password");
         driver.findElement(emailField).sendKeys(password);
     }
+
+    public void clickLoginButton(){
+        By loginButton = By.xpath("//button");
+        driver.findElement(loginButton).click();
+    }
 }
