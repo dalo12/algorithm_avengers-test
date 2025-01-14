@@ -15,7 +15,7 @@ import java.time.Duration;
 
 public class LoginSteps {
     protected WebDriver driver;
-    protected String URL = "http://127.0.0.1:8000/";
+    protected String loginURL = "http://127.0.0.1:8000/";
     protected String dashboardURL = "http://127.0.0.1:8000/dashboard";
     protected LoginPage loginPage;
     protected Wait<WebDriver> wait;
@@ -24,7 +24,7 @@ public class LoginSteps {
     public void the_user_is_on_the_login_page(){
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        driver.get(URL);
+        driver.get(loginURL);
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         loginPage = new LoginPage(driver);
@@ -44,5 +44,10 @@ public class LoginSteps {
     @Then("the user is redirected to the dashboard page")
     public void the_user_is_redirected_to_the_dashboard_page(){
         Assert.assertEquals(driver.getCurrentUrl(), dashboardURL);
+    }
+
+    @Then("the user remains in the login page")
+    public void the_user_remains_in_the_login_page(){
+        Assert.assertEquals(driver.getCurrentUrl(), loginURL);
     }
 }
