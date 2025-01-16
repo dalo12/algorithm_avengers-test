@@ -1,15 +1,19 @@
-package steps;
+package steps.newproduct;
 
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import pages.LoginPage;
 import pages.NewProductPage;
 
 public class NewProductSteps {
+    protected static String EMAIL = "admin@iaw.com";
+    protected static String PASSWORD = "admin123";
     protected WebDriver driver;
     protected String newProductURL = "http://127.0.0.1:8000/productos/create?";
     protected String productsURL = "http://127.0.0.1:8000/productos";
+    protected LoginPage loginPage;
     protected NewProductPage page;
     protected static int QTY_PRODUCTS = 11;
 
@@ -18,8 +22,16 @@ public class NewProductSteps {
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
         driver.get(newProductURL);
+        loginPage = new LoginPage(driver);
+        logIn();
 
         page = new NewProductPage(driver);
+    }
+
+    protected void logIn(){
+        loginPage.fillEmailField(EMAIL);
+        loginPage.fillPasswordField(PASSWORD);
+        loginPage.clickLoginButton();
     }
 
     @When("the user enters {string} in Nombre field")

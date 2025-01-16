@@ -1,7 +1,6 @@
-package steps;
+package steps.login;
 
 import io.cucumber.java.en.*;
-import io.cucumber.java.hu.Ha;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 //import org.openqa.selenium.chrome.ChromeDriver;
