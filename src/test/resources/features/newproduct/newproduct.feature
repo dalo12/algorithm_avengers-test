@@ -1,6 +1,6 @@
 Feature: Create Product
 
-  Scenario: All field completed
+  Scenario: All fields completed
     Given the user is in the product creation page
     When the user enters "Remera de test" in Nombre field
     When the user enters "Esta es una remera de test" in Descripcion field

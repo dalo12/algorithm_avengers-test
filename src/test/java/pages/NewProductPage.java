@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -38,7 +39,7 @@ public class NewProductPage {
     }
 
     public void selectCategoriasSelect(int index){
-        By byCategoriasSelect = By.name("categorias");
+        By byCategoriasSelect = By.name("categoria_id");
         WebElement categoriasSelectElement = driver.findElement(byCategoriasSelect);
         Select categoriasSelect = new Select(categoriasSelectElement);
 
@@ -46,8 +47,11 @@ public class NewProductPage {
     }
 
     public void clickOnGuardarButton(){
-        By byGuardarButton = By.xpath("/html/body/div/main/form/input[2]");
-        driver.findElement(byGuardarButton).click();
+        By byGuardarButton = By.cssSelector("input.btn");
+        WebElement guardarButton = driver.findElement(byGuardarButton);
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", guardarButton);
+        guardarButton.click();
     }
 
 }
