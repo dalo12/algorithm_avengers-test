@@ -6,6 +6,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.LoginPage;
 import pages.NewProductPage;
+import pages.ProductsPage;
+
+import java.time.Duration;
 
 public class NewProductSteps {
     protected static String EMAIL = "admin@iaw.com";
@@ -13,7 +16,8 @@ public class NewProductSteps {
     protected WebDriver driver;
     protected String newProductURL = "http://127.0.0.1:8000/productos/create?";
     protected String productsURL = "http://127.0.0.1:8000/productos";
-    protected NewProductPage page;
+    protected NewProductPage newProductPage;
+    protected ProductsPage productsPage;
     protected int QTY_PRODUCTS = 11;
 
     @Given("the user is in the product creation page")
@@ -23,7 +27,10 @@ public class NewProductSteps {
         driver.get(newProductURL);
         logIn();
 
-        page = new NewProductPage(driver);
+        //productsPage = new ProductsPage(driver);
+
+        newProductPage = new NewProductPage(driver);
+        newProductPage.waitPageLoad();
     }
 
     protected void logIn(){
@@ -35,41 +42,44 @@ public class NewProductSteps {
 
     @When("the user enters {string} in Nombre field")
     public void theUserEntersInNombreField(String name) {
-        page.fillNombreField(name);
+        newProductPage.fillNombreField(name);
     }
 
     @When("the user enters {string} in Descripcion field")
     public void theUserEntersInDescripcionField(String description) {
-        page.fillDescripcionField(description);
+        newProductPage.fillDescripcionField(description);
     }
 
     @When("the user enters {string} in Precio field")
     public void theUserEntersInPrecioField(String price) {
-        page.fillPrecioField(price);
+        newProductPage.fillPrecioField(price);
     }
 
     @When("the user enters {string} in Imagen field")
     public void theUserEntersInImagenField(String image) {
-        page.fillImagenInput(image);
+        newProductPage.fillImagenInput(image);
     }
 
     @When("the user enters {string} in Talles field")
     public void theUserEntersInTallesField(String sizes) {
-        page.fillTallesField(sizes);
+        newProductPage.fillTallesField(sizes);
     }
 
     @When("the user selects {int} in Categoria select")
     public void theUserSelectsInCategoriaSelect(int index) {
-        page.selectCategoriasSelect(index);
+        newProductPage.selectCategoriasSelect(index);
     }
 
     @When("the user clicks the Guardar button")
     public void theUserClicksTheGuardarButton() {
-        page.clickOnGuardarButton();
+        newProductPage.clickOnGuardarButton();
     }
 
     @Then("the user is redirected to the products page")
     public void theUserIsRedirectedToTheProductsPage() {
-        Assert.assertEquals(driver.getCurrentUrl(), productsURL);
+        productsPage = new ProductsPage(driver);
+        productsPage.waitProductsPageLoad();
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        Assert.assertEquals(productsURL, driver.getCurrentUrl());
     }
 }

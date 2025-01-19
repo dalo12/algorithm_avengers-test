@@ -5,12 +5,23 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class NewProductPage {
     protected WebDriver driver;
 
     public NewProductPage(WebDriver driver){
         this.driver = driver;
+    }
+
+    public void waitPageLoad(){
+        By byNombreField = By.name("nombre");
+        WebElement nombreField = driver.findElement(byNombreField);
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(d->nombreField.isDisplayed());
     }
 
     public void fillNombreField(String name){
@@ -49,9 +60,7 @@ public class NewProductPage {
     public void clickOnGuardarButton(){
         By byGuardarButton = By.cssSelector("input.btn");
         WebElement guardarButton = driver.findElement(byGuardarButton);
-
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", guardarButton);
-        guardarButton.click();
+        guardarButton.submit();
     }
 
 }
