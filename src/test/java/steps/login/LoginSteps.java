@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pages.DashboardPage;
 import pages.LoginPage;
 
 import java.time.Duration;
@@ -42,8 +43,12 @@ public class LoginSteps {
 
     @Then("the user is redirected to the dashboard page")
     public void the_user_is_redirected_to_the_dashboard_page(){
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage.waitDashboardPageLoad();
+
         String currentUrl = driver.getCurrentUrl();
         driver.quit();
+
         Assert.assertEquals(dashboardURL, currentUrl);
     }
 
