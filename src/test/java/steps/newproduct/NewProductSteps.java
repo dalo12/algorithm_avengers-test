@@ -9,6 +9,7 @@ import pages.NewProductPage;
 import pages.ProductsPage;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class NewProductSteps {
     protected static String EMAIL = "admin@iaw.com";
@@ -79,7 +80,11 @@ public class NewProductSteps {
     public void theUserIsRedirectedToTheProductsPage() {
         productsPage = new ProductsPage(driver);
         productsPage.waitProductsPageLoad();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        Assert.assertEquals(productsURL, driver.getCurrentUrl());
+
+        String currentURL = driver.getCurrentUrl();
+        driver.quit();
+
+        Assert.assertEquals(productsURL, currentURL);
+
     }
 }

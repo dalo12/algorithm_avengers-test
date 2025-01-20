@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -16,9 +17,8 @@ public class ProductsPage {
     }
 
     public void waitProductsPageLoad(){
-        By byTitle = By.xpath("/html/body/div/main/legend");
-        WebElement title = driver.findElement(byTitle);
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(d->title.isDisplayed());
+        By byTitle = By.xpath("/html/body/div/main/legend");
+        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(byTitle));
     }
 }
