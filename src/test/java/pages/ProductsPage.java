@@ -19,6 +19,6 @@ public class ProductsPage {
     public void waitProductsPageLoad(){
         Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         By byTitle = By.xpath("/html/body/div/main/legend");
-        WebElement title = wait.until(ExpectedConditions.visibilityOfElementLocated(byTitle));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(byTitle));
     }
 }

@@ -42,11 +42,16 @@ public class LoginSteps {
 
     @Then("the user is redirected to the dashboard page")
     public void the_user_is_redirected_to_the_dashboard_page(){
-        Assert.assertEquals(driver.getCurrentUrl(), dashboardURL);
+        String currentUrl = driver.getCurrentUrl();
+        driver.quit();
+        Assert.assertEquals(dashboardURL, currentUrl);
     }
 
     @Then("the user remains in the login page")
     public void the_user_remains_in_the_login_page(){
-        Assert.assertEquals(driver.getCurrentUrl(), loginURL);
+        String currentUrl = driver.getCurrentUrl();
+        driver.quit();
+
+        Assert.assertEquals(loginURL, currentUrl);
     }
 }
