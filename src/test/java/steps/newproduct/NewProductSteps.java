@@ -16,19 +16,27 @@ public class NewProductSteps {
     protected String productsURL = "http://127.0.0.1:8000/productos";
     protected NewProductPage newProductPage;
     protected ProductsPage productsPage;
-    protected int productsQty = 40; // an update in every run is needed
+    protected int productsQty;
 
     @Given("the user is in the product creation page")
     public void the_user_is_in_the_product_creation_page(){
         driver = new FirefoxDriver();
         driver.manage().window().maximize();
-        driver.get(newProductURL);
-        logIn();
 
         productsPage = new ProductsPage(driver);
 
+        driver.get(productsURL);
+        logIn();
+        getCurrentProductsQty();
+
+        driver.get(newProductURL);
         newProductPage = new NewProductPage(driver);
         newProductPage.waitPageLoad();
+    }
+
+    protected void getCurrentProductsQty(){
+        productsPage.waitProductsPageLoad();
+        productsQty = productsPage.getProductsQty();
     }
 
     protected void logIn(){
