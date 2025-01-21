@@ -114,4 +114,41 @@ public class NewProductPage {
         return allFieldsFilled;
     }
 
+    public boolean allFieldFilled(){
+        boolean allFieldsFilled = true;
+        List<String> listFieldNames = new ArrayList<String>();
+        listFieldNames.add(NAME_FIELD_NAME);
+        listFieldNames.add(DESCRIPTION_FIELD_NAME);
+        listFieldNames.add(PRICE_FIELD_NAME);
+        listFieldNames.add(IMAGE_FIELD_NAME);
+        listFieldNames.add(SIZES_FIELD_NAME);
+
+        Map<String, Boolean> fieldsStateMap = new HashMap<String, Boolean>();
+
+        for(String fieldName : listFieldNames){
+            By byFieldName = By.name(fieldName);
+            boolean isFilled = !driver.findElement(byFieldName).getText().isEmpty();
+
+            fieldsStateMap.put(fieldName, isFilled);
+        }
+
+        for(Map.Entry<String, Boolean> entry : fieldsStateMap.entrySet()){
+            Boolean isFilled = entry.getValue();
+
+            allFieldsFilled = allFieldsFilled && isFilled;
+
+        }
+
+        By byCategoriasSelect = By.name(CATEGORY_FIELD_NAME);
+        WebElement categoriasSelectElement = driver.findElement(byCategoriasSelect);
+        Select categoriasSelect = new Select(categoriasSelectElement);
+        try {
+            categoriasSelect.getFirstSelectedOption();
+        }catch(NoSuchElementException e){
+            allFieldsFilled = false;
+        }
+
+        return allFieldsFilled;
+    }
+
 }
