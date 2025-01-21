@@ -97,6 +97,7 @@ public class NewProductSteps {
 
     @Then("the user remains in the product creation page")
     public void theUserRemainsInTheProductCreationPage() {
+        newProductPage.waitPageLoad();
         String currentUrl = driver.getCurrentUrl();
 
         Assert.assertEquals(newProductURL, currentUrl);
@@ -106,6 +107,41 @@ public class NewProductSteps {
     public void allFieldsAreFilledExceptCategory() {
         newProductPage.waitPageLoad();
         Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.CATEGORY_FIELD_NAME));
+        driver.quit();
+    }
+
+    @And("all fields are filled")
+    public void allFieldsAreFilled() {
+        newProductPage.waitPageLoad();
+        Assert.assertTrue(newProductPage.allFieldFilled());
+        driver.quit();
+    }
+
+    @And("all fields are filled except size")
+    public void allFieldsAreFilledExceptSize() {
+        newProductPage.waitPageLoad();
+        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.SIZES_FIELD_NAME));
+        driver.quit();
+    }
+
+    @And("all fields are filled except image")
+    public void allFieldsAreFilledExceptImage() {
+        newProductPage.waitPageLoad();
+        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.IMAGE_FIELD_NAME));
+        driver.quit();
+    }
+
+    @And("all fields are filled except price")
+    public void allFieldsAreFilledExceptPrice() {
+        newProductPage.waitPageLoad();
+        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.PRICE_FIELD_NAME));
+        driver.quit();
+    }
+
+    @And("all fields are filled except name")
+    public void allFieldsAreFilledExceptName() {
+        newProductPage.waitPageLoad();
+        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.NAME_FIELD_NAME));
         driver.quit();
     }
 }
