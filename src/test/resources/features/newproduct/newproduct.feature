@@ -10,3 +10,4 @@ Feature: Create Product
     When the user selects 1 in Categoria select
     When the user clicks the Guardar button
     Then the user is redirected to the products page
+    And there is one more product in the products page

@@ -8,9 +8,6 @@ import pages.LoginPage;
 import pages.NewProductPage;
 import pages.ProductsPage;
 
-import java.time.Duration;
-import java.util.concurrent.TimeUnit;
-
 public class NewProductSteps {
     protected static String EMAIL = "admin@iaw.com";
     protected static String PASSWORD = "admin123";
@@ -19,7 +16,7 @@ public class NewProductSteps {
     protected String productsURL = "http://127.0.0.1:8000/productos";
     protected NewProductPage newProductPage;
     protected ProductsPage productsPage;
-    protected int QTY_PRODUCTS = 11;
+    protected int productsQty = 28;
 
     @Given("the user is in the product creation page")
     public void the_user_is_in_the_product_creation_page(){
@@ -28,7 +25,7 @@ public class NewProductSteps {
         driver.get(newProductURL);
         logIn();
 
-        //productsPage = new ProductsPage(driver);
+        productsPage = new ProductsPage(driver);
 
         newProductPage = new NewProductPage(driver);
         newProductPage.waitPageLoad();
@@ -78,13 +75,17 @@ public class NewProductSteps {
 
     @Then("the user is redirected to the products page")
     public void theUserIsRedirectedToTheProductsPage() {
-        productsPage = new ProductsPage(driver);
         productsPage.waitProductsPageLoad();
-
         String currentURL = driver.getCurrentUrl();
-        driver.quit();
 
         Assert.assertEquals(productsURL, currentURL);
+    }
 
+    @And("there is one more product in the products page")
+    public void thereIsOneMoreProductInTheProductsPage() {
+        int actualProductsQty = productsPage.getProductsQty();
+        driver.quit();
+
+        Assert.assertEquals(++productsQty, actualProductsQty);
     }
 }
