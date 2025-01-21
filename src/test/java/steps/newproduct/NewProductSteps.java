@@ -12,11 +12,11 @@ public class NewProductSteps {
     protected static String EMAIL = "admin@iaw.com";
     protected static String PASSWORD = "admin123";
     protected WebDriver driver;
-    protected String newProductURL = "http://127.0.0.1:8000/productos/create?";
+    protected String newProductURL = "http://127.0.0.1:8000/productos/create";
     protected String productsURL = "http://127.0.0.1:8000/productos";
     protected NewProductPage newProductPage;
     protected ProductsPage productsPage;
-    protected int productsQty = 28;
+    protected int productsQty = 40; // an update in every run is needed
 
     @Given("the user is in the product creation page")
     public void the_user_is_in_the_product_creation_page(){
@@ -83,9 +83,21 @@ public class NewProductSteps {
 
     @And("there is one more product in the products page")
     public void thereIsOneMoreProductInTheProductsPage() {
-        int actualProductsQty = productsPage.getProductsQty();
+        Assert.assertEquals(++productsQty, productsPage.getProductsQty());
         driver.quit();
+    }
 
-        Assert.assertEquals(++productsQty, actualProductsQty);
+    @Then("the user remains in the product creation page")
+    public void theUserRemainsInTheProductCreationPage() {
+        String currentUrl = driver.getCurrentUrl();
+
+        Assert.assertEquals(newProductURL, currentUrl);
+    }
+
+    @And("all fields are filled except category")
+    public void allFieldsAreFilledExceptCategory() {
+        newProductPage.waitPageLoad();
+        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.CATEGORY_FIELD_NAME));
+        driver.quit();
     }
 }

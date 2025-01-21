@@ -73,7 +73,7 @@ public class NewProductPage {
         guardarButton.submit();
     }
 
-    public boolean noEmptyFieldExcept(String field){
+    public boolean allFieldFilledExcept(String field){
         boolean allFieldsFilled = true;
         List<String> listFieldNames = new ArrayList<String>();
         listFieldNames.add(NAME_FIELD_NAME);
@@ -86,7 +86,7 @@ public class NewProductPage {
 
         for(String fieldName : listFieldNames){
             By byFieldName = By.name(fieldName);
-            boolean isFilled = driver.findElement(byFieldName).getText().isEmpty();
+            boolean isFilled = !driver.findElement(byFieldName).getText().isEmpty();
 
             fieldsStateMap.put(fieldName, isFilled);
         }
@@ -100,7 +100,7 @@ public class NewProductPage {
             }
         }
 
-        if(!field.equals(CATEGORY_FIELD_NAME)){
+        if(field.equals(CATEGORY_FIELD_NAME)){
             By byCategoriasSelect = By.name(CATEGORY_FIELD_NAME);
             WebElement categoriasSelectElement = driver.findElement(byCategoriasSelect);
             Select categoriasSelect = new Select(categoriasSelectElement);
