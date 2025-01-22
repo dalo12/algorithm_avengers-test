@@ -3,6 +3,8 @@ package steps.newproduct;
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.LoginPage;
 import pages.NewProductPage;
@@ -20,7 +22,10 @@ public class NewProductSteps {
 
     @Given("the user is in the product creation page")
     public void the_user_is_in_the_product_creation_page(){
-        driver = new FirefoxDriver();
+        System.setProperty("webdriver.chrome.driver", "/snap/chromium/3025/usr/lib/chromium-browser/chromedriver");
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary("/usr/bin/chromium-browser");
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
 
         productsPage = new ProductsPage(driver);
@@ -97,7 +102,6 @@ public class NewProductSteps {
 
     @Then("the user remains in the product creation page")
     public void theUserRemainsInTheProductCreationPage() {
-        newProductPage.waitPageLoad();
         String currentUrl = driver.getCurrentUrl();
 
         Assert.assertEquals(newProductURL, currentUrl);
