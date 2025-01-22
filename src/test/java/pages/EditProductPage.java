@@ -7,10 +7,8 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
-import java.util.function.Function;
 
-public class EditProductPage {
-    WebDriver driver;
+public class EditProductPage extends FormProductPage {
 
     public EditProductPage(WebDriver driver){
         this.driver = driver;

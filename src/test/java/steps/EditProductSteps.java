@@ -17,6 +17,7 @@ public class EditProductSteps {
     protected String productsUrl = "http://127.0.0.1:8000/productos";
     protected EditProductPage editProductPage;
     protected ProductsPage productsPage;
+    protected NewProductPage newProductPage;
 
 
     @Given("the user is in the edition page of product with id {string}")
@@ -34,6 +35,10 @@ public class EditProductSteps {
 
         editProductPage = new EditProductPage(driver);
         editProductPage.waitPageLoad();
+
+        newProductPage = new NewProductPage(driver);
+        newProductPage.waitPageLoad();
+        productsPage = new ProductsPage(driver);
     }
 
     protected void logIn(){
