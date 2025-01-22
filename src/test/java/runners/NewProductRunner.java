@@ -6,8 +6,8 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-        features= {"src/test/resources/features/newproduct"},
-        glue= {"steps/newproduct"},
+        features= {"src/test/resources/features/newproduct.feature"},
+        glue= {"steps"},
         monochrome=true
 )
 public class NewProductRunner {

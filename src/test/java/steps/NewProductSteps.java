@@ -1,11 +1,10 @@
-package steps.newproduct;
+package steps;
 
 import io.cucumber.java.en.*;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import pages.LoginPage;
 import pages.NewProductPage;
 import pages.ProductsPage;

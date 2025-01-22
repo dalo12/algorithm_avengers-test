@@ -1,4 +1,4 @@
-package steps.login;
+package steps;
 
 import io.cucumber.java.en.*;
 import org.junit.Assert;
