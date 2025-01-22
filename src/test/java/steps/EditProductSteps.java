@@ -4,10 +4,7 @@ import io.cucumber.java.en.Given;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import pages.EditProductPage;
-import pages.LoginPage;
-import pages.NewProductPage;
-import pages.ProductsPage;
+import pages.*;
 
 public class EditProductSteps {
     protected static String EMAIL = "admin@iaw.com";
@@ -15,9 +12,8 @@ public class EditProductSteps {
     protected WebDriver driver;
     protected String editProductUrl = "http://127.0.0.1:8000/productos/product_id/edit";
     protected String productsUrl = "http://127.0.0.1:8000/productos";
-    protected EditProductPage editProductPage;
+    protected FormProductPage editProductPage;
     protected ProductsPage productsPage;
-    protected NewProductPage newProductPage;
 
 
     @Given("the user is in the edition page of product with id {string}")
@@ -35,9 +31,7 @@ public class EditProductSteps {
 
         editProductPage = new EditProductPage(driver);
         editProductPage.waitPageLoad();
-
-        newProductPage = new NewProductPage(driver);
-        newProductPage.waitPageLoad();
+        
         productsPage = new ProductsPage(driver);
     }
 

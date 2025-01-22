@@ -5,6 +5,7 @@ import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import pages.FormProductPage;
 import pages.LoginPage;
 import pages.NewProductPage;
 import pages.ProductsPage;
@@ -15,7 +16,7 @@ public class NewProductSteps {
     protected WebDriver driver;
     protected String newProductURL = "http://127.0.0.1:8000/productos/create";
     protected String productsURL = "http://127.0.0.1:8000/productos";
-    protected NewProductPage newProductPage;
+    protected FormProductPage page;
     protected ProductsPage productsPage;
     protected int productsQty;
 
@@ -34,8 +35,8 @@ public class NewProductSteps {
         getCurrentProductsQty();
 
         driver.get(newProductURL);
-        newProductPage = new NewProductPage(driver);
-        newProductPage.waitPageLoad();
+        page = new NewProductPage(driver);
+        page.waitPageLoad();
     }
 
     protected void getCurrentProductsQty(){
@@ -52,37 +53,37 @@ public class NewProductSteps {
 
     @When("the user enters {string} in Nombre field")
     public void theUserEntersInNombreField(String name) {
-        newProductPage.fillNombreField(name);
+        page.fillNombreField(name);
     }
 
     @When("the user enters {string} in Descripcion field")
     public void theUserEntersInDescripcionField(String description) {
-        newProductPage.fillDescripcionField(description);
+        page.fillDescripcionField(description);
     }
 
     @When("the user enters {string} in Precio field")
     public void theUserEntersInPrecioField(String price) {
-        newProductPage.fillPrecioField(price);
+        page.fillPrecioField(price);
     }
 
     @When("the user enters {string} in Imagen field")
     public void theUserEntersInImagenField(String image) {
-        newProductPage.fillImagenInput(image);
+        page.fillImagenInput(image);
     }
 
     @When("the user enters {string} in Talles field")
     public void theUserEntersInTallesField(String sizes) {
-        newProductPage.fillTallesField(sizes);
+        page.fillTallesField(sizes);
     }
 
     @When("the user selects {int} in Categoria select")
     public void theUserSelectsInCategoriaSelect(int index) {
-        newProductPage.selectCategoriasSelect(index);
+        page.selectCategoriasSelect(index);
     }
 
     @When("the user clicks the Guardar button")
     public void theUserClicksTheGuardarButton() {
-        newProductPage.clickOnGuardarButton();
+        page.clickOnGuardarButton();
     }
 
     @Then("the user is redirected to the products page")
@@ -108,43 +109,43 @@ public class NewProductSteps {
 
     @And("all fields are filled except category")
     public void allFieldsAreFilledExceptCategory() {
-        newProductPage.waitPageLoad();
-        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.CATEGORY_FIELD_NAME));
+        page.waitPageLoad();
+        Assert.assertTrue(page.allFieldFilledExcept(NewProductPage.CATEGORY_FIELD_NAME));
         driver.quit();
     }
 
     @And("all fields are filled")
     public void allFieldsAreFilled() {
-        newProductPage.waitPageLoad();
-        Assert.assertTrue(newProductPage.allFieldFilled());
+        page.waitPageLoad();
+        Assert.assertTrue(page.allFieldFilled());
         driver.quit();
     }
 
     @And("all fields are filled except size")
     public void allFieldsAreFilledExceptSize() {
-        newProductPage.waitPageLoad();
-        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.SIZES_FIELD_NAME));
+        page.waitPageLoad();
+        Assert.assertTrue(page.allFieldFilledExcept(NewProductPage.SIZES_FIELD_NAME));
         driver.quit();
     }
 
     @And("all fields are filled except image")
     public void allFieldsAreFilledExceptImage() {
-        newProductPage.waitPageLoad();
-        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.IMAGE_FIELD_NAME));
+        page.waitPageLoad();
+        Assert.assertTrue(page.allFieldFilledExcept(NewProductPage.IMAGE_FIELD_NAME));
         driver.quit();
     }
 
     @And("all fields are filled except price")
     public void allFieldsAreFilledExceptPrice() {
-        newProductPage.waitPageLoad();
-        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.PRICE_FIELD_NAME));
+        page.waitPageLoad();
+        Assert.assertTrue(page.allFieldFilledExcept(NewProductPage.PRICE_FIELD_NAME));
         driver.quit();
     }
 
     @And("all fields are filled except name")
     public void allFieldsAreFilledExceptName() {
-        newProductPage.waitPageLoad();
-        Assert.assertTrue(newProductPage.allFieldFilledExcept(NewProductPage.NAME_FIELD_NAME));
+        page.waitPageLoad();
+        Assert.assertTrue(page.allFieldFilledExcept(NewProductPage.NAME_FIELD_NAME));
         driver.quit();
     }
 }
