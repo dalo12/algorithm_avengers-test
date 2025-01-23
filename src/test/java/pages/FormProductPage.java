@@ -31,8 +31,10 @@ public abstract class FormProductPage {
     }
 
     public void fillNombreField(String name){
-        By nombreField = By.name(NAME_FIELD_NAME);
-        driver.findElement(nombreField).sendKeys(name);
+        By byNombreField = By.name(NAME_FIELD_NAME);
+        WebElement nombreField = driver.findElement(byNombreField);
+        nombreField.clear();
+        nombreField.sendKeys(name);
     }
 
     public void fillDescripcionField(String description){

@@ -46,49 +46,48 @@ public class EditProductSteps {
         loginPage.clickLoginButton();
     }
 
-    @When("the user enters {string} in Nombre field")
-    public void theUserEntersInNombreField(String name) {
+    @When("the user edits the Nombre field with {string}")
+    public void theUserEditsTheNombreFieldWith(String name) {
         editProductPage.fillNombreField(name);
     }
 
-    @When("the user enters {string} in Descripcion field")
-    public void theUserEntersInDescripcionField(String description) {
+    @When("the user edits the Description field with {string}")
+    public void theUserEditsTheDescriptionFieldWith(String description) {
         editProductPage.fillDescripcionField(description);
     }
 
-    @When("the user enters {string} in Precio field")
-    public void theUserEntersInPrecioField(String price) {
+    @When("the user edits the Precio field with {string}")
+    public void theUserEditsThePrecioFieldWith(String price) {
         editProductPage.fillPrecioField(price);
     }
 
-    @When("the user enters {string} in Imagen field")
-    public void theUserEntersInImagenField(String image) {
-        editProductPage.fillImagenInput(image);
+    @When("the user edits the Imagen field with {string}")
+    public void theUserEditsTheImagenFieldWith(String imageUrl) {
+        editProductPage.fillImagenInput(imageUrl);
     }
 
-    @When("the user enters {string} in Talles field")
-    public void theUserEntersInTallesField(String sizes) {
+    @When("the user edits the Talles field with {string}")
+    public void theUserEditsTheTallesFieldWith(String sizes) {
         editProductPage.fillTallesField(sizes);
     }
 
-    @When("the user selects {int} in Categoria select")
-    public void theUserSelectsInCategoriaSelect(int index) {
+    @When("the user edits the Categoria field selecting {int}")
+    public void theUserEditsTheCategoriaFieldSelecting(int index) {
         editProductPage.selectCategoriasSelect(index);
     }
 
-    @When("the user clicks the Guardar button")
-    public void theUserClicksTheGuardarButton() {
+    @When("the user clicks the Guardar button in edit page")
+    public void theUserClicksTheGuardarButtonInEditPage() {
         editProductPage.clickOnGuardarButton();
     }
 
-    @Then("the user is redirected to the products page")
+    @Then("the user is redirected to the products page from edit")
     public void theUserIsRedirectedToTheProductsPage() {
         productsPage.waitProductsPageLoad();
         String currentURL = driver.getCurrentUrl();
 
         Assert.assertEquals(productsUrl, currentURL);
     }
-
 
     @Then("the user remains in the product edition page")
     public void theUserRemainsInTheProductEditionPage() {
@@ -97,42 +96,42 @@ public class EditProductSteps {
         Assert.assertEquals(editProductUrl, currentUrl);
     }
 
-    @And("all fields are filled except category")
+    @Then("all fields in edition are filled except category")
     public void allFieldsAreFilledExceptCategory() {
         editProductPage.waitPageLoad();
         Assert.assertTrue(editProductPage.allFieldFilledExcept(NewProductPage.CATEGORY_FIELD_NAME));
         driver.quit();
     }
 
-    @And("all fields are filled")
+    @Then("all fields in edition are filled")
     public void allFieldsAreFilled() {
         editProductPage.waitPageLoad();
         Assert.assertTrue(editProductPage.allFieldFilled());
         driver.quit();
     }
 
-    @And("all fields are filled except size")
+    @Then("all fields in edition are filled except size")
     public void allFieldsAreFilledExceptSize() {
         editProductPage.waitPageLoad();
         Assert.assertTrue(editProductPage.allFieldFilledExcept(NewProductPage.SIZES_FIELD_NAME));
         driver.quit();
     }
 
-    @And("all fields are filled except image")
+    @Then("all fields in edition are filled except image")
     public void allFieldsAreFilledExceptImage() {
         editProductPage.waitPageLoad();
         Assert.assertTrue(editProductPage.allFieldFilledExcept(NewProductPage.IMAGE_FIELD_NAME));
         driver.quit();
     }
 
-    @And("all fields are filled except price")
+    @Then("all fields in edition are filled except price")
     public void allFieldsAreFilledExceptPrice() {
         editProductPage.waitPageLoad();
         Assert.assertTrue(editProductPage.allFieldFilledExcept(NewProductPage.PRICE_FIELD_NAME));
         driver.quit();
     }
 
-    @And("all fields are filled except name")
+    @Then("all fields in edition are filled except name")
     public void allFieldsAreFilledExceptName() {
         editProductPage.waitPageLoad();
         Assert.assertTrue(editProductPage.allFieldFilledExcept(NewProductPage.NAME_FIELD_NAME));
