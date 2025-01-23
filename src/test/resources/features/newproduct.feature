@@ -12,7 +12,7 @@ Feature: Create Product
     Then the user is redirected to the products page
     And there is one more product in the products page
 
-  Scenario: Category empty
+  Scenario: Empty category
     Given the user is in the product creation page
     When the user enters "Remera de test" in Nombre field
     When the user enters "Esta es una remera de test" in Descripcion field
@@ -23,7 +23,7 @@ Feature: Create Product
     Then the user remains in the product creation page
     And all fields are filled except category
 
-  Scenario: Invalid size test
+  Scenario: Invalid size
     Given the user is in the product creation page
     When the user enters "Remera de test" in Nombre field
     When the user enters "Esta es una remera de test" in Descripcion field
@@ -35,7 +35,7 @@ Feature: Create Product
     Then the user remains in the product creation page
     And all fields are filled
 
-  Scenario: Invalid order size
+  Scenario: Invalid sizes order
     Given the user is in the product creation page
     When the user enters "Remera de test" in Nombre field
     When the user enters "Esta es una remera de test" in Descripcion field
@@ -47,7 +47,7 @@ Feature: Create Product
     Then the user remains in the product creation page
     And all fields are filled
 
-  Scenario: Invalid empty size
+  Scenario: Empty size
     Given the user is in the product creation page
     When the user enters "Remera de test" in Nombre field
     When the user enters "Esta es una remera de test" in Descripcion field
