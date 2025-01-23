@@ -38,23 +38,31 @@ public abstract class FormProductPage {
     }
 
     public void fillDescripcionField(String description){
-        By descripcionField = By.name(DESCRIPTION_FIELD_NAME);
-        driver.findElement(descripcionField).sendKeys(description);
+        By byDescripcionField = By.name(DESCRIPTION_FIELD_NAME);
+        WebElement descripcionField = driver.findElement(byDescripcionField);
+        descripcionField.clear();
+        descripcionField.sendKeys(description);
     }
 
     public void fillPrecioField(String price){
-        By precioField = By.name(PRICE_FIELD_NAME);
-        driver.findElement(precioField).sendKeys(price);
+        By byPrecioField = By.name(PRICE_FIELD_NAME);
+        WebElement precioField = driver.findElement(byPrecioField);
+        precioField.clear();
+        precioField.sendKeys(price);
     }
 
     public void fillImagenInput(String image){
-        By imagenInput = By.name(IMAGE_FIELD_NAME);
-        driver.findElement(imagenInput).sendKeys(image);
+        By byImagenInput = By.name(IMAGE_FIELD_NAME);
+        WebElement imageInput = driver.findElement(byImagenInput);
+        imageInput.clear();
+        imageInput.sendKeys(image);
     }
 
     public void fillTallesField(String sizes){
-        By tallesField = By.name(SIZES_FIELD_NAME);
-        driver.findElement(tallesField).sendKeys(sizes);
+        By byTallesField = By.name(SIZES_FIELD_NAME);
+        WebElement tallesField = driver.findElement(byTallesField);
+        tallesField.clear();
+        tallesField.sendKeys(sizes);
     }
 
     public void selectCategoriasSelect(int index){

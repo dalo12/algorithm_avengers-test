@@ -76,6 +76,11 @@ public class EditProductSteps {
         editProductPage.selectCategoriasSelect(index);
     }
 
+    @When("the user edits the Categoria field selecting none")
+    public void theUserEditsTheCategoriaFieldSelectingNone() {
+        editProductPage.selectCategoriasSelect(0);
+    }
+
     @When("the user clicks the Guardar button in edit page")
     public void theUserClicksTheGuardarButtonInEditPage() {
         editProductPage.clickOnGuardarButton();
