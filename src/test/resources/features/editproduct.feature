@@ -154,7 +154,7 @@ Feature: Edit a existing product
 
   Scenario: Empty name
     Given the user is in the edition page of product with id "2"
-    When the user edits the Nombre field with ""
+    When the user edits the Nombre field with "F"
     When the user edits the Description field with "Esta es una remera de test"
     When the user edits the Precio field with "420.69"
     When the user edits the Imagen field with "/home/david/IdeaProjects/Automation_Testing/src/test/resources/assets/test.jpg"

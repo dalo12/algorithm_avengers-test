@@ -10,22 +10,22 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class ProductsPage {
-    protected WebDriver driver;
-    protected Wait<WebDriver> wait;
+public class CategoriesPage {
+    WebDriver driver;
 
-    public ProductsPage(WebDriver driver){
+    public CategoriesPage(WebDriver driver){
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    public void waitProductsPageLoad(){
-        By byTitle = By.xpath("/html/body/div/main/legend");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(byTitle));
+    public void waitPageLoad(){
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        By byLegend = By.xpath("/html/body/div/main/legend");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(byLegend));
     }
 
-    public int getProductsQty() {
+    public int getCategoriesQuantity(){
         int qty = 0;
+
         By byQty = By.xpath("/html/body/nav/div[2]/div[1]/p/span[3]");
         List<WebElement> qtyList = driver.findElements(byQty);
         boolean qtyIsPresent = !qtyList.isEmpty();
@@ -42,5 +42,4 @@ public class ProductsPage {
 
         return qty;
     }
-
 }
