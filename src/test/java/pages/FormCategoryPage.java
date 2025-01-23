@@ -49,22 +49,4 @@ public class FormCategoryPage {
         WebElement descripcionField = driver.findElement(byDescripcionField);
         return !descripcionField.getText().isEmpty();
     }
-
-    public boolean nombreFieldIsFilled(){
-        By byNombreField = By.name(NAME_FIELD_NAME);
-        WebElement nombreField = driver.findElement(byNombreField);
-        return !nombreField.getText().isEmpty();
-    }
-
-    public boolean allFieldsAreFilled(){
-        By byNombreField = By.name(NAME_FIELD_NAME);
-        WebElement nombreField = driver.findElement(byNombreField);
-        boolean nombreFieldIsFilled = !nombreField.getText().isEmpty();
-
-        By byDescripcionField = By.name(DESCRIPTION_FIELD_NAME);
-        WebElement descripcionField = driver.findElement(byDescripcionField);
-        boolean descriptionFieldIsFilled = !descripcionField.getText().isEmpty();
-
-        return nombreFieldIsFilled && descriptionFieldIsFilled;
-    }
 }

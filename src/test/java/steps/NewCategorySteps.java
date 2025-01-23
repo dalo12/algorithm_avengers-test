@@ -80,4 +80,15 @@ public class NewCategorySteps {
     }
 
 
+    @Then("the user remains in the category creation page")
+    public void theUserRemainsInTheCategoryCreationPage() {
+        String currentUrl = driver.getCurrentUrl();
+        Assert.assertEquals(NEW_CATEGORY_URL, currentUrl);
+    }
+
+    @And("the descripcion field is filled in creation page")
+    public void theDescripcionFieldIsFilledInCreationPage() {
+        Assert.assertTrue(newCategoryPage.descripcionFieldIsFilled());
+        driver.quit();
+    }
 }
